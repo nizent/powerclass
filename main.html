@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerClass</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f5f8ff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    header img {
+      height: 40px;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+
+    .section {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .card {
+      flex: 1 1 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .card p {
+      margin-top: 1rem;
+      font-weight: 300;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><img src="powerclass_logo.png" alt="PowerClass logo">PowerClass</h1>
+    <p>Impulsando el futuro del deporte y la educación</p>
+  </header>
+
+  <div class="section">
+    <div class="card">
+      <img src="creditcard.png" alt="PowerClass Card">
+      <p>Una tarjeta inteligente para gestionar pagos y beneficios.</p>
+    </div>
+    <div class="card">
+      <img src="power_class_shirt.png" alt="PowerClass Shirt">
+      <p>Merch oficial para que representes tu energía.</p>
+    </div>
+    <div class="card">
+      <img src="create_account_image.png" alt="PowerClass App">
+      <p>Una app poderosa para conectar instructores y alumnos.</p>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 PowerClass. Todos los derechos reservados.
+  </footer>
+</body>
+</html>
