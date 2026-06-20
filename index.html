@@ -3,10 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portada Moderna con Gradiente Fluido</title>
+  <title>Portada Moderna - Poppins & Tonos Azules</title>
+  
+  <!-- 1. IMPORTACIÓN DE LA FUENTE POPPINS (Pesos: 400, 500, 700 y 800) -->
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap" rel="stylesheet">
+
   <script src="https://tailwindcss.com"></script>
+  
   <style>
-    /* Asegura que el canvas ocupe todo el espacio de fondo */
+    /* 2. CONFIGURACIÓN PARA QUE TODO EL SITIO USE POPPINS POR DEFECTO */
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
     #gradient-canvas {
       position: absolute;
       top: 0;
@@ -14,42 +25,37 @@
       width: 100%;
       height: 100%;
       z-index: -10;
-      --gradient-color-1: #ff5e62; /* Rosa/Rojo de Stripe */
-      --gradient-color-2: #ff9966; /* Naranja cálido */
-      --gradient-color-3: #7f00ff; /* Violeta intenso */
-      --gradient-color-4: #e100ff; /* Magenta brillante */
     }
   </style>
 </head>
-<body class="bg-white text-slate-900 font-sans antialiased overflow-x-hidden m-0 p-0">
+<body class="bg-white text-slate-900 antialiased overflow-x-hidden m-0 p-0">
 
-  <!-- Contenedor Principal -->
   <main class="relative min-h-screen flex items-center justify-start pt-16">
     
-    <!-- El Canvas que renderiza el fondo animado -->
-    <canvas id="gradient-canvas" data-js-darken-top data-transition-in></canvas>
+    <!-- Canvas para el fondo animado -->
+    <canvas id="gradient-canvas"></canvas>
 
-    <!-- Contenido en primer plano -->
+    <!-- Contenido -->
     <section class="max-w-6xl mx-auto px-6 w-full grid lg:grid-cols-12 gap-12 items-center relative z-10">
       
-      <!-- Textos principales -->
       <div class="lg:col-span-8 space-y-6">
-        <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight leading-none text-slate-900">
-          Infrastructure to grow <br class="hidden sm:inline" />
-          <span class="text-indigo-600">your revenue.</span>
+        <!-- El peso font-extrabold activa el grosor 800 de Poppins -->
+        <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight text-slate-950">
+          Infraestructura digital <br class="hidden sm:inline" />
+          <span class="text-blue-600">para tu negocio.</span>
         </h1>
         
+        <!-- El peso font-medium activa el grosor 500 de Poppins -->
         <p class="text-xl lg:text-2xl text-slate-600 max-w-2xl font-medium leading-relaxed">
-          Payments, offer financial services, and custom revenue models—from your first transaction to your billionth.
+          Plataforma de pagos y servicios financieros diseñada para escalar. Automatiza tus cobros desde la primera transacción.
         </p>
         
-        <!-- Botones de Acción Estilo Minimalista -->
         <div class="flex flex-col sm:flex-row gap-4 pt-4">
-          <a href="#" class="px-5 py-2.5 bg-indigo-600 text-white font-medium rounded-full shadow-md hover:bg-indigo-700 transition-all text-center">
-            Start with payments
+          <a href="#" class="px-6 py-3 bg-blue-600 text-white font-medium rounded-full shadow-md hover:bg-blue-700 transition-all text-center tracking-wide text-sm">
+            Empezar ahora
           </a>
-          <a href="#" class="px-5 py-2.5 bg-slate-100/80 backdrop-blur-sm text-slate-700 font-medium rounded-full hover:bg-slate-200 transition-all text-center border border-slate-200">
-            Contact sales
+          <a href="#" class="px-6 py-3 bg-slate-100/80 backdrop-blur-sm text-slate-700 font-medium rounded-full hover:bg-slate-200 transition-all text-center border border-slate-200 tracking-wide text-sm">
+            Contactar ventas
           </a>
         </div>
       </div>
@@ -57,16 +63,14 @@
     </section>
   </main>
 
-  <!-- Script que controla el movimiento matemático del gradiente -->
   <script>
     const canvas = document.getElementById('gradient-canvas');
     const gl = canvas.getContext('webgl');
 
     if (!gl) {
-      console.error('WebGL no soportado, usando fondo estático alternativo.');
+      console.error('WebGL no soportado.');
     }
 
-    // Código del Shader de Vértices (Posicionamiento tridimensional)
     const vsSource = `
       attribute vec2 position;
       void main() {
@@ -74,7 +78,6 @@
       }
     `;
 
-    // Código del Shader de Fragmentos (Cálculo matemático de las ondas de color)
     const fsSource = `
       precision highp float;
       uniform vec2 u_resolution;
@@ -83,30 +86,25 @@
       void main() {
         vec2 uv = gl_FragCoord.xy / u_resolution.xy;
         
-        // Simulación de ondas fluidas interactuando entre sí
-        float wave1 = sin(uv.x * 2.5 + u_time * 0.4) * 0.5 + 0.5;
-        float wave2 = cos(uv.y * 2.0 - u_time * 0.3) * 0.5 + 0.5;
-        float wave3 = sin((uv.x + uv.y) * 1.5 + u_time * 0.2) * 0.5 + 0.5;
+        float wave1 = sin(uv.x * 2.0 + u_time * 0.3) * 0.5 + 0.5;
+        float wave2 = cos(uv.y * 1.8 - u_time * 0.25) * 0.5 + 0.5;
+        float wave3 = sin((uv.x + uv.y) * 1.2 + u_time * 0.15) * 0.5 + 0.5;
 
-        // Paleta de colores de la imagen (Stripe vibe)
-        vec3 color1 = vec3(1.0, 0.36, 0.38); // #ff5e62
-        vec3 color2 = vec3(1.0, 0.60, 0.40); // #ff9966
-        vec3 color3 = vec3(0.50, 0.0, 1.0);  // #7f00ff
-        vec3 color4 = vec3(1.0, 1.0, 1.0);  // Fondo blanco para fusionar
+        vec3 azulProfundo = vec3(0.11, 0.36, 0.87); 
+        vec3 celesteClaro  = vec3(0.46, 0.78, 0.96); 
+        vec3 grisModerno   = vec3(0.92, 0.94, 0.96); 
+        vec3 blancoFondo   = vec3(1.0, 1.0, 1.0);    
 
-        // Mezcla matemática de los colores basada en las ondas y posición de pantalla
-        vec3 mix1 = mix(color1, color2, wave1);
-        vec3 mix2 = mix(color3, color4, wave2);
-        vec3 finalColor = mix(mix1, mix2, vec3(uv.x * 0.4 + wave3 * 0.6));
+        vec3 mix1 = mix(azulProfundo, celesteClaro, wave1);
+        vec3 mix2 = mix(grisModerno, blancoFondo, wave2);
+        vec3 finalColor = mix(mix1, mix2, vec3(uv.x * 0.3 + wave3 * 0.7));
 
-        // Suavizado hacia el blanco en la parte izquierda de la pantalla
-        finalColor = mix(vec3(1.0), finalColor, smoothstep(0.0, 0.7, uv.x + uv.y * 0.3));
+        finalColor = mix(blancoFondo, finalColor, smoothstep(0.1, 0.8, uv.x + uv.y * 0.2));
 
         gl_FragColor = vec4(finalColor, 1.0);
       }
     `;
 
-    // Configuración técnica y compilación de Shaders de WebGL
     function createShader(gl, type, source) {
       const shader = gl.createShader(type);
       gl.shaderSource(shader, source);
@@ -136,11 +134,9 @@
     const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
     const timeLocation = gl.getUniformLocation(program, "u_time");
 
-    // Bucle de animación continuo
     function render(time) {
-      time *= 0.001; // Convertir a segundos
+      time *= 0.001;
 
-      // Ajustar tamaño del lienzo al tamaño de pantalla real
       if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
