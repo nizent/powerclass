@@ -3,74 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portada Estilo Stripe</title>
+  <title>Portada Moderna con Gradiente Fluido</title>
   <script src="https://tailwindcss.com"></script>
+  <style>
+    /* Asegura que el canvas ocupe todo el espacio de fondo */
+    #gradient-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -10;
+      --gradient-color-1: #ff5e62; /* Rosa/Rojo de Stripe */
+      --gradient-color-2: #ff9966; /* Naranja cálido */
+      --gradient-color-3: #7f00ff; /* Violeta intenso */
+      --gradient-color-4: #e100ff; /* Magenta brillante */
+    }
+  </style>
 </head>
-<body class="bg-slate-900 text-white font-sans antialiased overflow-x-hidden">
+<body class="bg-white text-slate-900 font-sans antialiased overflow-x-hidden m-0 p-0">
 
-  <!-- Contenedor Principal con Fondo Complejo -->
-  <main class="relative relative min-h-screen flex items-center justify-center pt-16">
+  <!-- Contenedor Principal -->
+  <main class="relative min-h-screen flex items-center justify-start pt-16">
     
-    <!-- Efecto de Luces y Gradientes de Fondo -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none -z-10">
-      <!-- Luz violeta superior -->
-      <div class="absolute top-[-10%] left-[-20%] w-[80vw] h-[50vw] bg-violet-600/20 rounded-full blur-[120px] transform -rotate-12"></div>
-      <!-- Luz azul/cyan central -->
-      <div class="absolute top-[10%] right-[-10%] w-[60vw] h-[60vw] bg-cyan-500/15 rounded-full blur-[140px]"></div>
-    </div>
+    <!-- El Canvas que renderiza el fondo animado -->
+    <canvas id="gradient-canvas" data-js-darken-top data-transition-in></canvas>
 
-    <!-- Contenido Central -->
-    <section class="max-w-6xl mx-auto px-6 text-center lg:text-left grid lg:grid-cols-12 gap-12 items-center">
+    <!-- Contenido en primer plano -->
+    <section class="max-w-6xl mx-auto px-6 w-full grid lg:grid-cols-12 gap-12 items-center relative z-10">
       
-      <!-- Textos y Acciones -->
-      <div class="lg:col-span-7 space-y-6">
-        <!-- Tag Superior -->
-        <span class="inline-flex items-center gap-2 px-3 py-1 text-xs font-medium text-cyan-400 bg-cyan-500/10 rounded-full border border-cyan-500/20">
-          Novedad: Versión 2.0 ya disponible
-        </span>
-        
-        <!-- Título Principal con Impacto -->
-        <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight leading-tight">
-          La infraestructura <br />
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-indigo-400 to-violet-500">
-            para tu negocio.
-          </span>
+      <!-- Textos principales -->
+      <div class="lg:col-span-8 space-y-6">
+        <h1 class="text-5xl lg:text-7xl font-extrabold tracking-tight leading-none text-slate-900">
+          Infrastructure to grow <br class="hidden sm:inline" />
+          <span class="text-indigo-600">your revenue.</span>
         </h1>
         
-        <!-- Descripción Breve -->
-        <p class="text-lg text-slate-400 max-w-xl mx-auto lg:mx-0">
-          Clona este template estático, personaliza los textos y despliega en minutos. Diseñado para ofrecer la máxima conversión y velocidad.
+        <p class="text-xl lg:text-2xl text-slate-600 max-w-2xl font-medium leading-relaxed">
+          Payments, offer financial services, and custom revenue models—from your first transaction to your billionth.
         </p>
         
-        <!-- Botones de Acción (CTAs) -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
-          <a href="#" class="px-6 py-3 bg-white text-slate-900 font-semibold rounded-lg shadow-md hover:bg-slate-100 transition-all flex items-center justify-center gap-2 group">
-            Comenzar ahora
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        <!-- Botones de Acción Estilo Minimalista -->
+        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+          <a href="#" class="px-5 py-2.5 bg-indigo-600 text-white font-medium rounded-full shadow-md hover:bg-indigo-700 transition-all text-center">
+            Start with payments
           </a>
-          <a href="#" class="px-6 py-3 bg-slate-800 text-slate-300 font-semibold rounded-lg hover:bg-slate-700 border border-slate-700 transition-all">
-            Contactar ventas
+          <a href="#" class="px-5 py-2.5 bg-slate-100/80 backdrop-blur-sm text-slate-700 font-medium rounded-full hover:bg-slate-200 transition-all text-center border border-slate-200">
+            Contact sales
           </a>
-        </div>
-      </div>
-
-      <!-- Previsualización Visual (Placeholder de Tarjeta/Dashboard) -->
-      <div class="lg:col-span-5 relative">
-        <div class="relative mx-auto w-full max-w-[400px] aspect-[4/3] bg-gradient-to-tr from-slate-800 to-slate-850 rounded-2xl border border-slate-700/50 shadow-2xl p-6 overflow-hidden backdrop-blur-md">
-          <!-- Efecto de brillo en la tarjeta -->
-          <div class="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
-          <!-- Elementos simulados del dashboard -->
-          <div class="h-4 w-1/3 bg-slate-700 rounded mb-6"></div>
-          <div class="space-y-3">
-            <div class="h-8 w-full bg-slate-800 rounded border border-slate-700/40"></div>
-            <div class="h-8 w-5/6 bg-slate-800 rounded border border-slate-700/40"></div>
-            <div class="h-8 w-4/6 bg-slate-800 rounded border border-slate-700/40"></div>
-          </div>
         </div>
       </div>
 
     </section>
   </main>
 
+  <!-- Script que controla el movimiento matemático del gradiente -->
+  <script>
+    const canvas = document.getElementById('gradient-canvas');
+    const gl = canvas.getContext('webgl');
+
+    if (!gl) {
+      console.error('WebGL no soportado, usando fondo estático alternativo.');
+    }
+
+    // Código del Shader de Vértices (Posicionamiento tridimensional)
+    const vsSource = `
+      attribute vec2 position;
+      void main() {
+        gl_Position = vec4(position, 0.0, 1.0);
+      }
+    `;
+
+    // Código del Shader de Fragmentos (Cálculo matemático de las ondas de color)
+    const fsSource = `
+      precision highp float;
+      uniform vec2 u_resolution;
+      uniform float u_time;
+
+      void main() {
+        vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+        
+        // Simulación de ondas fluidas interactuando entre sí
+        float wave1 = sin(uv.x * 2.5 + u_time * 0.4) * 0.5 + 0.5;
+        float wave2 = cos(uv.y * 2.0 - u_time * 0.3) * 0.5 + 0.5;
+        float wave3 = sin((uv.x + uv.y) * 1.5 + u_time * 0.2) * 0.5 + 0.5;
+
+        // Paleta de colores de la imagen (Stripe vibe)
+        vec3 color1 = vec3(1.0, 0.36, 0.38); // #ff5e62
+        vec3 color2 = vec3(1.0, 0.60, 0.40); // #ff9966
+        vec3 color3 = vec3(0.50, 0.0, 1.0);  // #7f00ff
+        vec3 color4 = vec3(1.0, 1.0, 1.0);  // Fondo blanco para fusionar
+
+        // Mezcla matemática de los colores basada en las ondas y posición de pantalla
+        vec3 mix1 = mix(color1, color2, wave1);
+        vec3 mix2 = mix(color3, color4, wave2);
+        vec3 finalColor = mix(mix1, mix2, vec3(uv.x * 0.4 + wave3 * 0.6));
+
+        // Suavizado hacia el blanco en la parte izquierda de la pantalla
+        finalColor = mix(vec3(1.0), finalColor, smoothstep(0.0, 0.7, uv.x + uv.y * 0.3));
+
+        gl_FragColor = vec4(finalColor, 1.0);
+      }
+    `;
+
+    // Configuración técnica y compilación de Shaders de WebGL
+    function createShader(gl, type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      return shader;
+    }
+
+    const vertexShader = createShader(gl, gl.VERTEX_SHADER, vsSource);
+    const fragmentShader = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    gl.useProgram(program);
+
+    const positionBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+      -1, -1,  1, -1, -1,  1,
+      -1,  1,  1, -1,  1,  1,
+    ]), gl.STATIC_DRAW);
+
+    const positionLocation = gl.getAttribLocation(program, "position");
+    gl.enableVertexAttribArray(positionLocation);
+    gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+
+    const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
+    const timeLocation = gl.getUniformLocation(program, "u_time");
+
+    // Bucle de animación continuo
+    function render(time) {
+      time *= 0.001; // Convertir a segundos
+
+      // Ajustar tamaño del lienzo al tamaño de pantalla real
+      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+
+      gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+      gl.uniform1f(timeLocation, time);
+
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+  </script>
 </body>
 </html>
